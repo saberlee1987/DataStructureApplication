@@ -113,4 +113,26 @@ public class Tree {
 
     }
 
+    public int min(){
+        return min(root);
+    }
+
+    private boolean isLeaf(Node root){
+        return root.getLeftChild()==null || root.getRightChild()==null;
+    }
+
+    private int min(Node root){
+        if (root== null){
+            return -1;
+        }
+        if(isLeaf(root)){
+            return root.getValue();
+        }
+        int left = min(root.getLeftChild());
+        int right= min(root.getRightChild());
+        return Math.min(Integer.min(left,right), root.getValue());
+    }
+
+
+
 }

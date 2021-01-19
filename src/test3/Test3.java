@@ -3,7 +3,7 @@ package test3;
 public class Test3 {
     public static void main(String[] args) {
         Tree tree =new Tree();
-
+        System.out.println(tree.min());
         tree.insert(7);
         tree.insert(7);
         tree.insert(9);
@@ -22,5 +22,7 @@ public class Test3 {
         tree.traversePostOrder();
         System.out.println("");
         System.out.println(tree.height());
+        System.out.println("");
+        System.out.println(tree.min());
     }
 }
