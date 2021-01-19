@@ -20,5 +20,7 @@ public class Test3 {
         tree.traverseInOrder();
         System.out.println("");
         tree.traversePostOrder();
+        System.out.println("");
+        System.out.println(tree.height());
     }
 }
