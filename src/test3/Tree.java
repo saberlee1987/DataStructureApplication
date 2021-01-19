@@ -1,5 +1,7 @@
 package test3;
 
+import javax.sound.sampled.SourceDataLine;
+
 public class Tree {
     private Node root;
 
@@ -39,6 +41,7 @@ public class Tree {
     }
 
     public boolean find(int value){
+
         Node current= root;
         while(current!=null){
             if( value < current.getValue()){
@@ -52,4 +55,44 @@ public class Tree {
         }
         return false;   
      }
-}
+
+     public void traversePreOrder(){
+       traversePreOrder(root);
+     }
+
+     public void traverseInOrder(){
+        traverseInOrder(root);
+      }
+
+      public void traversePostOrder(){
+        traversePostOrder(root);
+      }
+
+     private void traversePreOrder(Node root){
+         if(root==null){
+             return;
+         }
+         System.out.print(root.getValue()+" ");
+         traversePreOrder(root.getLeftChild());
+         traversePreOrder(root.getRightChild());
+     }
+
+     private void traverseInOrder(Node root){
+        if(root==null){
+            return;
+        }
+        traverseInOrder(root.getLeftChild());
+        System.out.print(root.getValue()+" ");
+        traverseInOrder(root.getRightChild());
+    }
+
+    private void traversePostOrder(Node root){
+        if(root==null){
+            return;
+        }
+        traversePostOrder(root.getLeftChild());
+        traversePostOrder(root.getRightChild());
+        System.out.print(root.getValue()+" ");
+    }
+
+    }
