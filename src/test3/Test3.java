@@ -12,6 +12,7 @@ public class Test3 {
         tree.insert(8);
         tree.insert(10);
         tree.insert(10);
-        System.out.println("done");
+        System.out.println(tree.find(10));
+        System.out.println(tree.find(11));
     }
 }

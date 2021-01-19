@@ -37,4 +37,19 @@ public class Tree {
             }
         }
     }
+
+    public boolean find(int value){
+        Node current= root;
+        while(current!=null){
+            if( value < current.getValue()){
+                current = current.getLeftChild();
+            }else if (value > current.getValue()){
+                current = current.getRightChild();
+            }
+         else{
+             return true;
+            }
+        }
+        return false;   
+     }
 }
