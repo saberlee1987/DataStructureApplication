@@ -3,6 +3,7 @@ package test3;
 public class Test3 {
     public static void main(String[] args) {
         Tree tree =new Tree();
+
         tree.insert(7);
         tree.insert(7);
         tree.insert(9);
