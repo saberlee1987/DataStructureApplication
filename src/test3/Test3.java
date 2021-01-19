@@ -2,6 +2,7 @@ package test3;
 
 public class Test3 {
     public static void main(String[] args) {
+        
         Tree tree =new Tree();
         System.out.println(tree.min());
         tree.insert(7);
