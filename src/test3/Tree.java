@@ -1,6 +1,6 @@
 package test3;
-
-import javax.sound.sampled.SourceDataLine;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tree {
     private Node root;
@@ -40,99 +40,165 @@ public class Tree {
         }
     }
 
-    public boolean find(int value){
+    public boolean find(int value) {
 
-        Node current= root;
-        while(current!=null){
-            if( value < current.getValue()){
+        Node current = root;
+        while (current != null) {
+            if (value < current.getValue()) {
                 current = current.getLeftChild();
-            }else if (value > current.getValue()){
+            } else if (value > current.getValue()) {
                 current = current.getRightChild();
-            }
-         else{
-             return true;
+            } else {
+                return true;
             }
         }
-        return false;   
-     }
+        return false;
+    }
 
-     public void traversePreOrder(){
-       traversePreOrder(root);
-     }
+    public void traversePreOrder() {
+        traversePreOrder(root);
+    }
 
-     public void traverseInOrder(){
+    public void traverseInOrder() {
         traverseInOrder(root);
-      }
+    }
 
-      public void traversePostOrder(){
+    public void traversePostOrder() {
         traversePostOrder(root);
-      }
+    }
 
-     private void traversePreOrder(Node root){
-         if(root==null){
-             return;
-         }
-         System.out.print(root.getValue()+" ");
-         traversePreOrder(root.getLeftChild());
-         traversePreOrder(root.getRightChild());
-     }
+    private void traversePreOrder(Node root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.getValue() + " ");
+        traversePreOrder(root.getLeftChild());
+        traversePreOrder(root.getRightChild());
+    }
 
-     private void traverseInOrder(Node root){
-        if(root==null){
+    private void traverseInOrder(Node root) {
+        if (root == null) {
             return;
         }
         traverseInOrder(root.getLeftChild());
-        System.out.print(root.getValue()+" ");
+        System.out.print(root.getValue() + " ");
         traverseInOrder(root.getRightChild());
     }
 
-    private void traversePostOrder(Node root){
-        if(root==null){
+    private void traversePostOrder(Node root) {
+        if (root == null) {
             return;
         }
         traversePostOrder(root.getLeftChild());
         traversePostOrder(root.getRightChild());
-        System.out.print(root.getValue()+" ");
+        System.out.print(root.getValue() + " ");
     }
 
 
-    public int height(){
+    public int height() {
         return height(root);
     }
 
-    public int height(Node root){
-        if(root == null){
+    public int height(Node root) {
+        if (root == null) {
             return -1;
         }
-        if (root.getLeftChild()==null || root.getRightChild()==null){
+        if (root.getLeftChild() == null || root.getRightChild() == null) {
             return 0;
         }
 
         return 1 + Math.max(height(root.getLeftChild()),
-                     height(root.getRightChild()));
+                height(root.getRightChild()));
 
     }
 
-    public int min(){
+    public int min() {
         return min(root);
     }
 
-    private boolean isLeaf(Node root){
-        return root.getLeftChild()==null || root.getRightChild()==null;
+    private boolean isLeaf(Node root) {
+        return root.getLeftChild() == null || root.getRightChild() == null;
     }
 
-    private int min(Node root){
-        if (root== null){
+    private int min(Node root) {
+        if (root == null) {
             return -1;
         }
-        if(isLeaf(root)){
+        if (isLeaf(root)) {
             return root.getValue();
         }
         int left = min(root.getLeftChild());
-        int right= min(root.getRightChild());
-        return Math.min(Integer.min(left,right), root.getValue());
+        int right = min(root.getRightChild());
+        return Math.min(Integer.min(left, right), root.getValue());
+    }
+
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node root, int min, int max) {
+        if (root == null) {
+            return true;
+        }
+        if (root.getValue() < min || root.getValue() > max) {
+            return false;
+        }
+        return isBinarySearchTree(root.getLeftChild(), min, root.getValue() - 1)
+                && isBinarySearchTree(root.getRightChild(), root.getValue() + 1, max);
+
     }
 
 
+    public void swapRoot() {
+        Node temp = root.getLeftChild();
+        root.setLeftChild(root.getRightChild());
+        root.setRightChild(temp);
+    }
+
+    public boolean equal(Tree other) {
+        if (root == null || other == null) {
+            return false;
+        }
+        return equal(root, other.getRoot());
+    }
+
+    private boolean equal(Node first, Node second) {
+        if (first == null && second == null) {
+            return true;
+        }
+        if (first != null && second != null) {
+            return first.getValue() == second.getValue()
+                    && equal(first.getLeftChild(), second.getLeftChild())
+                    && equal(first.getRightChild(), second.getRightChild());
+        }
+        return false;
+    }
+
+    public List<Integer> getNodesAsDistance(int distance) {
+        List<Integer> list = new ArrayList<>();
+        getNodesAsDistance(root, distance, list);
+        return list;
+    }
+
+    private void getNodesAsDistance(Node root, int distance, List<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        if (distance == 0) {
+            list.add(root.getValue());
+            return;
+        }
+        getNodesAsDistance(root.getLeftChild(), distance - 1, list);
+        getNodesAsDistance(root.getRightChild(), distance - 1, list);
+    }
+
+    public void  traverseLevelOrder(){
+        for (int i = 0; i <= height(); i++) {
+            for (Integer integer : getNodesAsDistance(i)) {
+                System.out.print(integer+" ");
+            }
+        }
+        System.out.println();
+    }
 
 }
