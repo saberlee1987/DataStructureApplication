@@ -4,7 +4,7 @@ package test2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trie {
+public class Tree {
     private Node root = new Node(' ');
 
     public Node getRoot() {

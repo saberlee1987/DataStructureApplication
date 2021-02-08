@@ -2,7 +2,7 @@ package test2;
 
 public class Test2 {
     public static void main(String[] args) {
-        Trie trie=new Trie();
+        Tree tree =new Tree();
        // trie.insert("CAT");
         //trie.insert("CAN");
         //System.out.println("DONE");
@@ -22,11 +22,11 @@ public class Test2 {
 //        System.out.println(trie.contains("care"));
 
 
-        trie.insert("car");
-        trie.insert("card");
-        trie.insert("care");
-        trie.insert("careful");
-        trie.insert("egg");
-        System.out.println(trie.findWords(""));
+        tree.insert("car");
+        tree.insert("card");
+        tree.insert("care");
+        tree.insert("careful");
+        tree.insert("egg");
+        System.out.println(tree.findWords("cargo"));
     }
 }
