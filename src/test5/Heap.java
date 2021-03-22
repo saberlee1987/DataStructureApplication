@@ -5,23 +5,45 @@ public class Heap {
     private int[] items = new int[10];
     private int size;
 
-    public void remove() {
-        if (isEmpty()){
+    public int remove() {
+        if (isEmpty()) {
             throw new IllegalStateException("items is empty");
         }
+        int root = items[0];
         items[0] = items[--size];
+        bubbleDown();
+        return root;
+    }
+
+    private void bubbleDown() {
         int index = 0;
-        while (index <=size && !isValidParent(index)) {
+        while (index <= size && !isValidParent(index)) {
             int largeChildIndex = largerChildIndex(index);
             swap(index, largeChildIndex);
             index = largeChildIndex;
         }
     }
 
-    public boolean isEmpty(){
-        return size ==0;
+    public boolean isEmpty() {
+        return size == 0;
     }
+
+    private boolean hasLeftChild(int index) {
+        return leftChildIndex(index) <= size;
+    }
+
+    private boolean hasRightChild(int index) {
+        return rightChildIndex(index) <= size;
+    }
+
     private int largerChildIndex(int index) {
+        if (!hasLeftChild(index)) {
+            return index;
+        }
+        if (!hasRightChild(index)) {
+            return leftChildIndex(index);
+        }
+
         return (leftChild(index) > rightChild(index)) ?
                 leftChildIndex(index) : rightChildIndex(index);
     }
@@ -43,8 +65,14 @@ public class Heap {
     }
 
     private boolean isValidParent(int index) {
-        return items[index] >= leftChild(index) &&
-                items[index] >= rightChild(index);
+        if (!hasLeftChild(index))
+            return true;
+
+        boolean isValid = items[index] >= leftChildIndex(index);
+        if (hasRightChild(index)) {
+            isValid &= items[index] >= rightChildIndex(index);
+        }
+        return isValid;
     }
 
     public void insert(int value) {

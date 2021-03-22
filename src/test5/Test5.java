@@ -10,6 +10,7 @@ public class Test5 {
         heap.insert(4);
         heap.insert(1);
         heap.insert(8);
+        heap.remove();
         System.out.println("Done");
     }
 }
