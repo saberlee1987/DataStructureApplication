@@ -1,7 +1,5 @@
 package test5;
-
 import java.util.Arrays;
-
 public class Test5 {
     public static void main(String[] args) {
         int[] numbers = {5,3,10,1,4,2};
