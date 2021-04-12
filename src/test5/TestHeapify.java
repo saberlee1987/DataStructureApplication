@@ -1,0 +1,13 @@
+package test5;
+
+import java.util.Arrays;
+
+public class TestHeapify {
+    public static void main(String[] args) {
+        int[] numbers= {5,3,8,4,1,2};
+//        System.out.println(Arrays.toString(numbers));
+//        MaxHeap.heapify(numbers);
+//        System.out.println(Arrays.toString(numbers));
+        System.out.println(MaxHeap.getKthLargest(numbers, 2));
+    }
+}
