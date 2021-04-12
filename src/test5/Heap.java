@@ -2,8 +2,11 @@ package test5;
 
 
 public class Heap {
-    private int[] items = new int[10];
+    private int[] items;
     private int size;
+    public Heap(int length){
+        this.items= new int[length];
+    }
 
     public int remove() {
         if (isEmpty()) {
@@ -44,7 +47,7 @@ public class Heap {
             return leftChildIndex(index);
         }
 
-        return (leftChild(index) > rightChild(index)) ?
+        return leftChild(index) > rightChild(index) ?
                 leftChildIndex(index) : rightChildIndex(index);
     }
 
@@ -103,5 +106,9 @@ public class Heap {
         int temp = items[first];
         items[first] = items[second];
         items[second] = temp;
+    }
+
+    public int[] getItems() {
+        return items;
     }
 }
