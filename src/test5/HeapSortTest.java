@@ -49,7 +49,6 @@ public class HeapSortTest {
             System.out.print(arr[i] + " ");
         System.out.println();
     }
-
     // Driver code
     public static void main(String args[]) {
         int[] array = {16, 14, 10, 8, 7, 9, 3, 2, 4, 1};
