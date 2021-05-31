@@ -2,6 +2,7 @@ package linkedlist;
 
 import java.util.Arrays;
 
+
 public class LinkedListTest {
     public static void main(String[] args) {
         LinkList list = new LinkList();
